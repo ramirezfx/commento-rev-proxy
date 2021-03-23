@@ -1,0 +1,53 @@
+version: '3'
+
+services:
+  rev-proxy:
+    image: nginx:latest
+    restart: always
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - 80:80
+    depends_on:
+      - commento
+    networks:
+      - commento
+
+  php:
+    image: php:7.4-apache
+    volumes:
+      - ./$YOURSITE:/var/www/html
+    depends_on:
+      - commento
+    networks:
+      - commento
+
+  commento:
+    image: registry.gitlab.com/commento/commento
+    ports:
+      - 8081:8081
+    environment:
+      COMMENTO_ORIGIN: https://$COMMENTOURL
+      COMMENTO_PORT: 8081
+      COMMENTO_POSTGRES: postgres://postgres:postgres@db:5432/commento?sslmode=disable
+    depends_on:
+      - db
+    networks:
+      - commento
+
+  db:
+    image: postgres
+    environment:
+      POSTGRES_DB: commento
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    networks:
+      - commento
+    volumes:
+      - postgres_data_volume:/var/lib/postgresql/data
+
+networks:
+  commento:
+
+volumes:
+  postgres_data_volume:
