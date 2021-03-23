@@ -16,7 +16,7 @@ services:
   php:
     image: php:7.4-apache
     volumes:
-      - ./YOURSITE:/var/www/html
+      - ./YOURDOMAIN:/var/www/html
     depends_on:
       - commento
     networks:
