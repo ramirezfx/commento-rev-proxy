@@ -27,7 +27,7 @@ services:
     ports:
       - 8081:8081
     environment:
-      COMMENTO_ORIGIN: $COMMENTOURL
+      COMMENTO_ORIGIN: COMMENTOURL
       COMMENTO_PORT: 8081
       COMMENTO_POSTGRES: postgres://postgres:postgres@db:5432/commento?sslmode=disable
     depends_on:
