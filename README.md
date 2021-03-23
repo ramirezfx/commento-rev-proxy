@@ -31,9 +31,9 @@ Change the Values inside the file nginx.conf that suits to your domain
 
 `sed -i 's/YOURDOMAIN/$YOURDOMAIN/g' nginx.conf`
 
-`sed -i 's/COMMENTOURL/$COMMENTOURL/g' nginx.conf`
+`sed -i 's/COMMENTODOMAIN/$COMMENTODOMAIN/g' nginx.conf`
 
-where $YOURDOMAIN is the domain of your website (ex. yourdomain.com www.yourdomain.com) and $COMMENTOURL is the URL of the commento-comment system (ex: https://comments.yourdomain.com)
+where $YOURDOMAIN is the domain of your website (ex. yourdomain.com www.yourdomain.com) and $COMMENTODOMAIN is the Domain of the commento-comment system (ex: comments.yourdomain.com)
 
 Start the container:
 
